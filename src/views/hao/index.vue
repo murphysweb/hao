@@ -99,7 +99,6 @@ export default {
 
     },
     handleClick(row) {
-      alert(0)
       // 跳转到相应页
       this.$router.push({
         name: 'hao',

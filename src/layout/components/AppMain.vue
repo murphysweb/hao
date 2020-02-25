@@ -1,6 +1,6 @@
 <template>
   <section class="app-main">
-    <maincharts />
+    <maincharts v-if="!noSidebar" />
     <transition name="fade-transform" mode="out-in">
       <keep-alive :include="cachedViews">
         <router-view :key="key" />
@@ -11,6 +11,7 @@
 
 <script>
 import maincharts from '@/views/hao/maincharts.vue'
+import { mapState } from 'vuex'
 export default {
   name: 'AppMain',
   components: {
@@ -22,7 +23,10 @@ export default {
     },
     key() {
       return this.$route.path
-    }
+    },
+    ...mapState({
+      noSidebar: state => state.app.noSidebar
+    })
   }
 }
 </script>
