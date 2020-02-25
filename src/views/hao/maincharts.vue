@@ -1,5 +1,5 @@
 <template>
-  <div class="app-container">
+  <div class="app-container tree-box">
     <div id="tree" />
   </div>
 </template>
@@ -63,7 +63,7 @@ export default {
             bottom: '1%', // 下
             right: '20%', // 右的距离
 
-            symbolSize: 7, // 标记的大小，就是那个小圆圈，默认7
+            symbolSize: 30, // 标记的大小，就是那个小圆圈，默认7
 
             label: { // 每个节点所对应的标签的样式
               normal: {
@@ -99,5 +99,10 @@ export default {
 #tree {
   height: 200px;
   width: 400px;
+}
+.tree-box{
+  border:1px solid #d3d3d3;
+  padding: 0;
+  margin:20px;
 }
 </style>
