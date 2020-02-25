@@ -14,7 +14,7 @@
       <el-form-item label="">
         <el-input
           v-model.number="formData.name"
-          placeholder="搜索工程名称或描述信息"
+          placeholder="搜索工程名称或描述信息2222"
         />
       </el-form-item>
       <el-form-item>
@@ -28,17 +28,17 @@
     >
       <el-table-column
         fixed
-        prop="date"
+        prop="name"
         label="名称"
         min-width="150"
       />
       <el-table-column
-        prop="name"
+        prop="desc"
         label="描述"
         min-width="300"
       />
       <el-table-column
-        prop="province"
+        prop="date"
         label="创建时间"
         width="200"
       />
@@ -98,8 +98,15 @@ export default {
     search() {
 
     },
-    handleClick() {
-      //
+    handleClick(row) {
+      alert(0)
+      // 跳转到相应页
+      this.$router.push({
+        name: 'hao',
+        query: {
+          id: row.id
+        }
+      })
     },
     // 列表更改pageSize
     handleSizeChange(val) {

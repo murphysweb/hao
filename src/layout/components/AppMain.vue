@@ -1,5 +1,6 @@
 <template>
   <section class="app-main">
+    <maincharts />
     <transition name="fade-transform" mode="out-in">
       <keep-alive :include="cachedViews">
         <router-view :key="key" />
@@ -9,8 +10,12 @@
 </template>
 
 <script>
+import maincharts from '@/views/hao/maincharts.vue'
 export default {
   name: 'AppMain',
+  components: {
+    maincharts
+  },
   computed: {
     cachedViews() {
       return this.$store.state.tagsView.cachedViews

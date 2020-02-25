@@ -2,11 +2,11 @@
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
     <!-- 如果是首页的话菜单栏不展示 -->
-    <sidebar v-show="!hideSidebar" class="sidebar-container" />
-    <div :class="{hasTagsView:needTagsView,left0:hideSidebar}" class="main-container">
+    <sidebar v-if="!noSidebar" class="sidebar-container" />
+    <div :class="{hasTagsView:needTagsView,left0:noSidebar}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
         <navbar />
-        <tags-view v-if="!hideSidebar&&needTagsView" />
+        <tags-view v-if="!noSidebar&&needTagsView" />
       </div>
       <app-main />
       <right-panel v-if="showSettings">
@@ -33,16 +33,9 @@ export default {
     TagsView
   },
   mixins: [ResizeMixin],
-  data() {
-    return {
-      hideSidebar: false
-    }
-  },
-  created() {
-    if (this.$route.name === 'Dashboard') { this.hideSidebar = true }
-  },
   computed: {
     ...mapState({
+      noSidebar: state => state.app.noSidebar,
       sidebar: state => state.app.sidebar,
       device: state => state.app.device,
       showSettings: state => state.settings.showSettings,

@@ -70,6 +70,7 @@ export const constantRoutes = [
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
+  // 首页
   {
     path: '/',
     hidden: true,
@@ -81,6 +82,32 @@ export const constantRoutes = [
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
         meta: { title: '首页', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  // 第二页
+  {
+    path: '/hao',
+    redirect: '/hao/zixun',
+    component: Layout,
+    name: 'hao',
+    meta: {
+      title: '代理管理',
+      icon: 'coupon',
+      noCache: true
+    },
+    children: [
+      {
+        path: 'zixun',
+        component: () => import('@/views/hao/zixun'),
+        name: 'Guide',
+        meta: { title: '咨询监督', icon: 'guide', noCache: true }
+      },
+      {
+        path: 'gujia',
+        component: () => import('@/views/hao/gujia'),
+        name: 'Guide',
+        meta: { title: '股价风控', icon: 'guide', noCache: true }
       }
     ]
   },

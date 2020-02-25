@@ -49,3 +49,11 @@ new Vue({
   store,
   render: h => h(App)
 })
+router.beforeEach((to, from, next) => {
+  if (to.name === 'Dashboard') {
+    store.state.app.noSidebar = true
+  } else {
+    store.state.app.noSidebar = false
+  }
+  next()
+})

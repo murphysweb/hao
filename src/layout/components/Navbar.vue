@@ -1,6 +1,6 @@
 <template>
   <div class="navbar">
-    <hamburger v-if="!hideSidebar" id="hamburger-container" :is-active="!hideSidebar&&sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <hamburger v-if="!noSidebar" id="hamburger-container" :is-active="!noSidebar&&sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
 
     <breadcrumb id="breadcrumb-container" class="breadcrumb-container" />
 
@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import ErrorLog from '@/components/ErrorLog'
@@ -63,20 +63,15 @@ export default {
     SizeSelect,
     Search
   },
-  data() {
-    return {
-      hideSidebar: false
-    }
-  },
   computed: {
     ...mapGetters([
       'sidebar',
       'avatar',
       'device'
-    ])
-  },
-  created() {
-    if (this.$route.name === 'Dashboard') { this.hideSidebar = true }
+    ]),
+    ...mapState({
+      noSidebar: state => state.app.noSidebar
+    })
   },
   methods: {
     toggleSideBar() {
