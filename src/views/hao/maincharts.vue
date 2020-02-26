@@ -2,18 +2,37 @@
   <div class="app-container tree-box">
     <div id="tree" />
     <div class="components-container board">
-      <Kanban :list="list" header-text="推荐关系" />
+      <!-- 看板 -->
+      <div class="board-column">
+        <div class="board-column-header">
+          推荐关系
+        </div>
+        <draggable
+          :list="list"
+          v-bind="$attrs"
+          class="board-column-content"
+          :set-data="setData"
+        >
+          <div v-for="element in list" :key="element.id" class="board-item">
+            {{ element.name }} {{ element.id }}
+            <el-button-group style="margin-left: 14%;">
+              <el-button type="primary" @click="accept(element)">接受</el-button>
+              <el-button type="primary" @click="ignore(element)">忽略</el-button>
+            </el-button-group>
+          </div>
+        </draggable>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 // 全部引入
-import Kanban from '@/components/Kanban'
+import draggable from 'vuedraggable'
 var echarts = require('echarts')
 export default {
   name: 'DashboardAdmin',
-  components: { Kanban },
+  components: { draggable },
   data() {
     return {
       list: [
@@ -34,6 +53,7 @@ export default {
     this.initCharts()
   },
   methods: {
+    // 初始化图形插件
     initCharts() {
       this.chart = echarts.init(document.getElementById('tree'))
       this.setOptions()
@@ -98,6 +118,14 @@ export default {
           }
         }]
       })
+    },
+    // 接受
+    accept(e) {
+      // 操作数据
+    },
+    // 忽略
+    ignore(e) {
+      // 操作数据
     }
   }
 }
@@ -121,5 +149,51 @@ export default {
   justify-content: space-around;
   flex-direction: row;
   align-items: flex-start;
+}
+.board-column {
+  min-width: 300px;
+  min-height: 100px;
+  //max-height: 360px;
+  height: auto;
+  overflow: hidden;
+  background: #f0f0f0;
+  border-radius: 3px;
+
+  .board-column-header {
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
+    padding: 0 20px;
+    text-align: center;
+    background: #333;
+    color: #fff;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .board-column-content {
+    // height: auto;
+    // overflow: hidden;
+    max-height: 310px;
+    overflow: auto;
+    border: 10px solid transparent;
+    min-height: 60px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+
+    .board-item {
+      cursor: pointer;
+      width: 100%;
+      height: 64px;
+      margin: 5px 0;
+      background-color: #fff;
+      text-align: left;
+      line-height: 54px;
+      padding: 5px 10px;
+      box-sizing: border-box;
+      box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
 }
 </style>
