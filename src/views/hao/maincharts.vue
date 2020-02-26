@@ -42,7 +42,8 @@ export default {
         { name: '推荐', id: 4 },
         { name: '推荐', id: 5 },
         { name: '推荐', id: 6 }
-      ]
+      ],
+      rowData: null
     }
   },
   created() {
@@ -122,10 +123,12 @@ export default {
     // 接受
     accept(e) {
       // 操作数据
+      alert('接受推荐：' + e.id)
     },
     // 忽略
     ignore(e) {
       // 操作数据
+      alert('忽略推荐：' + e.id)
     }
   }
 }
