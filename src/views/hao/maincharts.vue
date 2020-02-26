@@ -21,8 +21,14 @@ export default {
         { name: '推荐', id: 2 },
         { name: '推荐', id: 3 },
         { name: '推荐', id: 4 }
-      ]
+      ],
+      // 首页列表参数
+      rowData: null
     }
+  },
+  created() {
+    // 从内存中取出来首页列表参数
+    this.rowData = JSON.parse(sessionStorage.getItem('hao'))
   },
   mounted() {
     this.initCharts()
