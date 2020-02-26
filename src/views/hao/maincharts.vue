@@ -1,17 +1,28 @@
 <template>
   <div class="app-container tree-box">
     <div id="tree" />
+    <div class="components-container board">
+      <Kanban :list="list" header-text="推荐关系" />
+    </div>
   </div>
 </template>
 
 <script>
 // 全部引入
+import Kanban from '@/components/Kanban'
 var echarts = require('echarts')
 export default {
   name: 'DashboardAdmin',
-  components: {},
+  components: { Kanban },
   data() {
-    return {}
+    return {
+      list: [
+        { name: '推荐', id: 1 },
+        { name: '推荐', id: 2 },
+        { name: '推荐', id: 3 },
+        { name: '推荐', id: 4 }
+      ]
+    }
   },
   mounted() {
     this.initCharts()
@@ -104,5 +115,13 @@ export default {
   border:1px solid #d3d3d3;
   padding: 0;
   margin:20px;
+}
+.board {
+  width: 1000px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: flex-start;
 }
 </style>

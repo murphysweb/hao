@@ -7,10 +7,10 @@ Vue.use(Router)
 import Layout from '@/layout'
 
 /* Router Modules */
-import componentsRouter from './modules/components'
-import chartsRouter from './modules/charts'
-import tableRouter from './modules/table'
-import nestedRouter from './modules/nested'
+// import componentsRouter from './modules/components'
+// import chartsRouter from './modules/charts'
+// import tableRouter from './modules/table'
+// import nestedRouter from './modules/nested'
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -101,7 +101,7 @@ export const constantRoutes = [
         path: 'zixun',
         component: () => import('@/views/hao/zixun'),
         name: 'Guide',
-        meta: { title: '咨询监督', noCache: true }
+        meta: { title: '资讯监督', noCache: true }
       },
       {
         path: 'gujia',

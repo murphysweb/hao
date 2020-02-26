@@ -24,8 +24,8 @@ export default {
   },
   data() {
     return {
-      title: 'Vue Element Admin',
-      logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
+      title: '好代理',
+      logo: 'https://www.mininglamp.com/homes/images/common/logo.png'
     }
   }
 }
@@ -55,7 +55,7 @@ export default {
     width: 100%;
 
     & .sidebar-logo {
-      width: 32px;
+      width: 100px;
       height: 32px;
       vertical-align: middle;
       margin-right: 12px;
