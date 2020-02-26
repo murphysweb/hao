@@ -41,71 +41,62 @@ export default {
     setOptions() {
       this.chart.setOption({
         tooltip: { // 提示框组件
-          trigger: 'item', // 触发类型，默认：item（数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用）。可选：'axis'：坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。'none':什么都不触发。
-          triggerOn: 'mousemove' // 提示框触发的条件，默认mousemove|click（鼠标点击和移动时触发）。可选mousemove：鼠标移动时，click：鼠标点击时，none：
+          // trigger: 'item', // 触发类型，默认：item（数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用）。可选：'axis'：坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。'none':什么都不触发。
+          // triggerOn: 'mousemove' // 提示框触发的条件，默认mousemove|click（鼠标点击和移动时触发）。可选mousemove：鼠标移动时，click：鼠标点击时，none：
         },
-        series: [ // 系列列表
-          {
-            type: 'tree', // 树形结构
-            data: [{
-              'children': [
-                {
-                  'children': [
-                    {
-                      'children': [
-                        {
-                          'children': [],
-                          'name': 'F'
-                        }
-                      ],
-                      'name': 'B'
-                    }
-                  ],
-                  'name': 'C'
-                },
-                {
-                  'children': [
-                    {
-                      'children': [],
-                      'name': 'E'
-                    }
-                  ],
-                  'name': 'D'
-                }
-              ],
-              'name': 'A'
-            }],
-            top: '1%', // 距离上
-            left: '7%', // 左
-            bottom: '1%', // 下
-            right: '20%', // 右的距离
-
-            symbolSize: 30, // 标记的大小，就是那个小圆圈，默认7
-
-            label: { // 每个节点所对应的标签的样式
-              normal: {
-                position: 'left', // 标签的位置
-                verticalAlign: 'middle', // 文字垂直对齐方式，默认自动。可选：top，middle，bottom
-                align: 'right', // 文字水平对齐方式，默认自动。可选：top，center，bottom
-                fontSize: 9 // 标签文字大小
-              }
-            },
-
-            leaves: { // 叶子节点的特殊配置，如上面的树图示例中，叶子节点和非叶子节点的标签位置不同
-              label: {
-                normal: {
-                  position: 'right',
-                  verticalAlign: 'middle',
-                  align: 'left'
-                }
-              }
-            },
-
-            expandAndCollapse: true, // 子树折叠和展开的交互，默认打开
-            animationDuration: 550, // 初始动画的时长，支持回调函数,默认1000
-            animationDurationUpdate: 750// 数据更新动画的时长，默认300
+        animationDurationUpdate: 1500,
+        animationEasingUpdate: 'quinticInOut',
+        series: [{
+          type: 'graph',
+          layout: 'none',
+          symbolSize: 50,
+          roam: true,
+          label: {
+            show: true
+          },
+          edgeSymbol: ['circle', 'arrow'],
+          edgeSymbolSize: [4, 10],
+          edgeLabel: {
+            fontSize: 20
+          },
+          data: [{
+            name: '节点1',
+            x: 500,
+            y: 300
+          }, {
+            name: '节点2',
+            x: 800,
+            y: 300
+          }, {
+            name: '节点3',
+            x: 550,
+            y: 100
+          }, {
+            name: '节点4',
+            x: 550,
+            y: 500
+          }],
+          // links: [],
+          links: [{
+            source: 0,
+            target: 1,
+            symbolSize: [5, 20]
+          }, {
+            source: '节点1',
+            target: '节点2'
+          }, {
+            source: '节点1',
+            target: '节点3'
+          }, {
+            source: '节点1',
+            target: '节点4'
+          }],
+          lineStyle: {
+            opacity: 0.9,
+            width: 2,
+            curveness: 0
           }
-        ]
+        }]
       })
     }
   }
@@ -114,8 +105,8 @@ export default {
 
 <style lang="scss" scoped>
 #tree {
-  height: 200px;
-  width: 400px;
+  width: 900px;
+  height: 400px;
   position: absolute;
 }
 .tree-box{
@@ -125,7 +116,7 @@ export default {
 }
 .board {
   width: 1000px;
-  margin-left: 42%;
+  margin-left: 34%;
   display: flex;
   justify-content: space-around;
   flex-direction: row;
