@@ -20,7 +20,9 @@ export default {
         { name: '推荐', id: 1 },
         { name: '推荐', id: 2 },
         { name: '推荐', id: 3 },
-        { name: '推荐', id: 4 }
+        { name: '推荐', id: 4 },
+        { name: '推荐', id: 5 },
+        { name: '推荐', id: 6 }
       ]
     }
   },
@@ -110,6 +112,7 @@ export default {
 #tree {
   height: 200px;
   width: 400px;
+  position: absolute;
 }
 .tree-box{
   border:1px solid #d3d3d3;
@@ -118,7 +121,7 @@ export default {
 }
 .board {
   width: 1000px;
-  margin-left: 20px;
+  margin-left: 42%;
   display: flex;
   justify-content: space-around;
   flex-direction: row;
