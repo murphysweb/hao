@@ -1,6 +1,8 @@
 <template>
   <div class="app-container tree-box">
+    <!-- 图标画布容器 -->
     <div id="tree" />
+    <!-- 推荐关系 -->
     <div class="components-container board">
       <!-- 看板 -->
       <div class="board-column">
