@@ -52,6 +52,7 @@
         fixed="right"
         align="center"
         label="操作"
+        width="180"
       >
         <template slot-scope="scope">
           <el-button type="text" size="small" @click="handleClick(scope.row)">查看</el-button>
@@ -278,11 +279,10 @@ export default {
     handleClick(row) {
       // 跳转到相应页
       this.$router.push({
-        name: 'hao',
-        query: {
-          id: row.id
-        }
+        name: 'hao'
       })
+      // 将参数存储到session里边
+      sessionStorage.setItem('hao', JSON.stringify(row))
     },
     handleDelete(index) {
       this.$confirm('此操作将永久删除该数据, 是否继续?', '提示', {

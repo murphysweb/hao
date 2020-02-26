@@ -11,7 +11,11 @@ export default {
   },
   data() {
     return {
+      rowData: null
     }
+  },
+  created() {
+    this.rowData = JSON.parse(sessionStorage.getItem('hao'))
   },
   methods: {
 

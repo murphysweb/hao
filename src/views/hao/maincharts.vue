@@ -26,6 +26,10 @@ export default {
       ]
     }
   },
+  created() {
+    // 从内存中取出来首页列表参数
+    this.rowData = JSON.parse(sessionStorage.getItem('hao'))
+  },
   mounted() {
     this.initCharts()
   },

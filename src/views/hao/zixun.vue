@@ -14,7 +14,11 @@ export default {
   components: { },
   data() {
     return {
+      rowData: null
     }
+  },
+  created() {
+    this.rowData = JSON.parse(sessionStorage.getItem('hao'))
   },
   methods: {
     resize() {
