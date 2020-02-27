@@ -64,15 +64,15 @@ export default {
     setOptions() {
       this.chart.setOption({
         tooltip: { // 提示框组件
-          // trigger: 'item', // 触发类型，默认：item（数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用）。可选：'axis'：坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。'none':什么都不触发。
-          // triggerOn: 'mousemove' // 提示框触发的条件，默认mousemove|click（鼠标点击和移动时触发）。可选mousemove：鼠标移动时，click：鼠标点击时，none：
+          trigger: 'item', // 触发类型，默认：item（数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用）。可选：'axis'：坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。'none':什么都不触发。
+          triggerOn: 'mousemove' // 提示框触发的条件，默认mousemove|click（鼠标点击和移动时触发）。可选mousemove：鼠标移动时，click：鼠标点击时，none：
         },
         animationDurationUpdate: 1500,
         animationEasingUpdate: 'quinticInOut',
         series: [{
           type: 'graph',
           layout: 'none',
-          symbolSize: 50,
+          symbolSize: 80,
           roam: true,
           label: {
             show: true
@@ -101,10 +101,6 @@ export default {
           }],
           // links: [],
           links: [{
-            source: 0,
-            target: 1,
-            symbolSize: [5, 20]
-          }, {
             source: '节点1',
             target: '节点2'
           }, {
@@ -139,7 +135,7 @@ export default {
 <style lang="scss" scoped>
 #tree {
   width: 900px;
-  height: 400px;
+  height: 420px;
   position: absolute;
 }
 .tree-box{
@@ -148,8 +144,8 @@ export default {
   margin:20px;
 }
 .board {
-  width: 1000px;
-  margin-left: 34%;
+  width: 200px;
+  margin-left: 78%;
   display: flex;
   justify-content: space-around;
   flex-direction: row;
