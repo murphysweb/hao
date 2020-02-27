@@ -85,9 +85,11 @@ export default {
         { name: '推荐6', id: 6 }
       ],
       rowData: null,
+      formLabelWidth: '100px',
       addRelaVisible: false, // 是否显示添加窗口
       addRela: {
-        name: ''
+        name: '',
+        relation: ''
       },
       options: {
         backgroundColor: '#FFF', // 背景颜色
@@ -171,52 +173,54 @@ export default {
             data: [
               {
                 name: '公司A',
+                category: '关系', // 数据项所在类目的 index。
                 draggable: true, // 节点是否可拖拽，只在使用力引导布局的时候有用。
                 symbolSize: [100, 100], // 关系图节点标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。
                 itemStyle: {
                   border: '1px solid tan',
                   color: '#1890FF'
                 }
-                // category: '收入支出分析' // 数据项所在类目的 index。
-              },
-              {
-                name: '公司B',
-                draggable: true,
-                symbolSize: [80, 80],
-                itemStyle: {
-                  border: '1px solid tan',
-                  color: '#1890FF'
-                }
-                // category: '收入+'
-              },
-              {
-                name: '公司C',
-                draggable: true,
-                symbolSize: [80, 80],
-                itemStyle: {
-                  border: '1px solid tan',
-                  color: '#1890FF'
-                }
-              },
-              {
-                name: '公司D',
-                draggable: true,
-                symbolSize: [80, 80],
-                itemStyle: {
-                  border: '1px solid tan',
-                  color: '#1890FF'
-                }
-              },
-              {
-                name: '公司E',
-                draggable: true,
-                symbolSize: [80, 80],
-                itemStyle: {
-                  border: '1px solid tan',
-                  color: '#1890FF'
-                }
-                // category: '剩余='
               }
+              // {
+              //   name: '公司B',
+              //   category: '关系',
+              //   draggable: true,
+              //   symbolSize: [80, 80],
+              //   itemStyle: {
+              //     border: '1px solid tan',
+              //     color: '#1890FF'
+              //   },
+              // },
+              // {
+              //   name: '公司C',
+              //   category: '关系',
+              //   draggable: true,
+              //   symbolSize: [80, 80],
+              //   itemStyle: {
+              //     border: '1px solid tan',
+              //     color: '#1890FF'
+              //   }
+              // },
+              // {
+              //   name: '公司D',
+              //   category: '关系',
+              //   draggable: true,
+              //   symbolSize: [80, 80],
+              //   itemStyle: {
+              //     border: '1px solid tan',
+              //     color: '#1890FF'
+              //   }
+              // },
+              // {
+              //   name: '公司E',
+              //   category: '关系',
+              //   draggable: true,
+              //   symbolSize: [80, 80],
+              //   itemStyle: {
+              //     border: '1px solid tan',
+              //     color: '#1890FF'
+              //   }
+              // }
             ],
             links: [
               {
@@ -278,7 +282,7 @@ export default {
       this.addRelaVisible = true
     },
     sumbitAddRow() {
-      if (this.addRela.name) {
+      if (this.addRela.name && this.addRela.relation) {
         this.addRelaVisible = false
         // 添加并更新视图
         this.addNameA(this.addRela.name)
@@ -312,16 +316,17 @@ export default {
 <style lang="scss" scoped>
 #tree {
   width: 900px;
-  height: 420px;
+  height: 460px;
   position: absolute;
 }
 .tree-box{
   border:1px solid #d3d3d3;
   padding: 0;
-  margin:20px;
+  margin: 20px;
 }
 .board {
   width: 200px;
+  height: 400px;
   margin-left: 75%;
   display: flex;
   justify-content: space-around;
@@ -329,7 +334,7 @@ export default {
   align-items: flex-start;
 }
 .board-column {
-  min-width: 300px;
+  min-width: 280px;
   min-height: 100px;
   //max-height: 360px;
   height: auto;
