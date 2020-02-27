@@ -16,7 +16,7 @@
           class="board-column-content"
         >
           <div v-for="element in list" :key="element.id" class="board-item">
-            {{ element.name }} {{ element.id }}
+            {{ element.name }}
             <el-button-group style="margin-left: 14%;">
               <el-button type="primary" @click="accept(element)">接受</el-button>
               <el-button type="primary" @click="ignore(element)">忽略</el-button>
@@ -35,15 +35,25 @@
       >
         <el-form-item
           label="名称"
+          :label-width="formLabelWidth"
         >
           <el-input
             v-model="addRela.name"
             autocomplete="off"
           />
         </el-form-item>
+        <el-form-item
+          label="关系"
+          :label-width="formLabelWidth"
+        >
+          <el-input
+            v-model="addRela.relation"
+            autocomplete="off"
+          />
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="cancel()">取消</el-button>
+        <el-button @click="cancel">取消</el-button>
         <el-button
           type="primary"
           @click="sumbitAddRow"
@@ -62,13 +72,17 @@ export default {
   components: { draggable },
   data() {
     return {
+      rules: {
+        name: [{ required: true, message: 'name is required', trigger: 'change' }],
+        relation: [{ required: true, message: 'relation is required', trigger: 'blur' }]
+      },
       list: [
-        { name: '推荐', id: 1 },
-        { name: '推荐', id: 2 },
-        { name: '推荐', id: 3 },
-        { name: '推荐', id: 4 },
-        { name: '推荐', id: 5 },
-        { name: '推荐', id: 6 }
+        { name: '推荐1', id: 1 },
+        { name: '推荐2', id: 2 },
+        { name: '推荐3', id: 3 },
+        { name: '推荐4', id: 4 },
+        { name: '推荐5', id: 5 },
+        { name: '推荐6', id: 6 }
       ],
       rowData: null,
       addRelaVisible: false, // 是否显示添加窗口
