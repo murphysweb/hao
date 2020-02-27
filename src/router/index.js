@@ -102,13 +102,13 @@ export const constantRoutes = [
         component: () => import('@/views/hao/zixun'),
         name: 'Guide',
         meta: { title: '资讯监督', noCache: true }
-      },
-      {
-        path: 'gujia',
-        component: () => import('@/views/hao/gujia'),
-        name: 'Guide',
-        meta: { title: '股价风控', noCache: true }
       }
+      // {
+      //   path: 'gujia',
+      //   component: () => import('@/views/hao/gujia'),
+      //   name: 'Guide',
+      //   meta: { title: '股价风控', noCache: true }
+      // }
     ]
   }
   // {

@@ -11,10 +11,6 @@
     >
       <div v-for="element in list" :key="element.id" class="board-item">
         {{ element.name }} {{ element.id }}
-        <el-button-group style="margin-left: 14%;">
-          <el-button type="primary">接受</el-button>
-          <el-button type="primary">忽略</el-button>
-        </el-button-group>
       </div>
     </draggable>
   </div>
@@ -59,7 +55,6 @@ export default {
 .board-column {
   min-width: 300px;
   min-height: 100px;
-  //max-height: 360px;
   height: auto;
   overflow: hidden;
   background: #f0f0f0;
@@ -77,10 +72,10 @@ export default {
   }
 
   .board-column-content {
-    // height: auto;
-    // overflow: hidden;
-    max-height: 310px;
-    overflow: auto;
+    height: auto;
+    overflow: hidden;
+    // max-height: 310px;
+    // overflow: auto;
     border: 10px solid transparent;
     min-height: 60px;
     display: flex;
