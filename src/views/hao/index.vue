@@ -269,11 +269,17 @@ export default {
       return this.tableData
     }
   },
+  mounted() {
+    this.getData()
+  },
   methods: {
     getData() {
-      const url = process.env.NODE_ENV === 'development' ? '/api/version/allAgents' : '/version/allAgents'
+      // const url = process.env.NODE_ENV === 'development' ? '/api/test/allAgents' : '/version/allAgents'
+      const url = 'http://172.16.1.25:8086/test/allAgents'
       axios.get(url).then(({ data }) => {
         this.tableData = data.data
+      }).catch((error) => {
+        console.log(error)
       })
     },
     handleClick(row) {
