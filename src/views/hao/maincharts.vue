@@ -61,9 +61,6 @@ export default {
       this.chart = echarts.init(document.getElementById('tree'))
       this.setOptions()
     },
-    accept() {
-      console.log('111111')
-    },
     setOptions() {
       this.chart.setOption({
         tooltip: { // 提示框组件
