@@ -32,6 +32,7 @@
       <el-form
         ref="addRela"
         :model="addRela"
+        :rules="rules"
       >
         <el-form-item
           label="名称"
@@ -272,6 +273,12 @@ export default {
       this.addNameA('公司' + e.id)
       // 删除在list里的该项数据
       // dothing
+      for (var i = 0; i < this.list.length; i++) {
+        if (this.list[i].name === e.name) {
+          this.list.splice(i, 1)
+          break
+        }
+      }
     },
     // 忽略
     ignore(e) {
