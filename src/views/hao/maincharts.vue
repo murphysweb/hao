@@ -2,7 +2,7 @@
   <div class="app-container tree-box">
     <div id="tree" />
     <div class="components-container board">
-      <Kanban :list="list" :father-method1="fatherMethod1" :father-method2="fatherMethod2" header-text="推荐关系" />
+      <Kanban :list="list" header-text="推荐关系" />
     </div>
   </div>
 </template>
@@ -34,12 +34,6 @@ export default {
     this.initCharts()
   },
   methods: {
-    fatherMethod1() {
-      alert('按钮1')
-    },
-    fatherMethod2() {
-      alert('按钮2')
-    },
     initCharts() {
       this.chart = echarts.init(document.getElementById('tree'))
       this.setOptions()
