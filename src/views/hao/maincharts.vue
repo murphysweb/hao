@@ -14,7 +14,6 @@
           :list="list"
           v-bind="$attrs"
           class="board-column-content"
-          :set-data="setData"
         >
           <div v-for="element in list" :key="element.id" class="board-item">
             {{ element.name }} {{ element.id }}
@@ -32,13 +31,10 @@
     >
       <el-form
         ref="addRela"
-        :rules="rules"
         :model="addRela"
       >
         <el-form-item
           label="名称"
-          prop="relation"
-          :label-width="formLabelWidth"
         >
           <el-input
             v-model="addRela.name"
@@ -50,8 +46,7 @@
         <el-button @click="cancel()">取消</el-button>
         <el-button
           type="primary"
-          :loading="addLoading"
-          @click="sumbitAddRela()"
+          @click="sumbitAddRow"
         >确定</el-button>
       </div>
     </el-dialog>
@@ -77,25 +72,10 @@ export default {
       ],
       rowData: null,
       addRelaVisible: false, // 是否显示添加窗口
-      addRela: []
-    }
-  },
-  created() {
-    // 从内存中取出来首页列表参数
-    this.rowData = JSON.parse(sessionStorage.getItem('hao'))
-  },
-  mounted() {
-    this.initCharts()
-  },
-  methods: {
-    // 初始化图形插件
-    initCharts() {
-      this.chart = echarts.init(document.getElementById('tree'))
-      this.setOptions()
-    },
-
-    setOptions() {
-      this.chart.setOption({
+      addRela: {
+        name: ''
+      },
+      options: {
         backgroundColor: '#FFF', // 背景颜色
         title: {
           // 图表标题
@@ -202,7 +182,6 @@ export default {
                   border: '1px solid tan',
                   color: '#1890FF'
                 }
-                // category: '支出-'
               },
               {
                 name: '公司D',
@@ -212,7 +191,6 @@ export default {
                   border: '1px solid tan',
                   color: '#1890FF'
                 }
-                // category: '支出-'
               },
               {
                 name: '公司E',
@@ -225,24 +203,6 @@ export default {
                 // category: '剩余='
               }
             ],
-            // categories: [
-            //   {
-            //     // 节点分类的类目，可选。如果节点有分类的话可以通过 data[i].category 指定每个节点的类目，类目的样式会被应用到节点样式上。图例也可以基于categories名字展现和筛选。
-            //     name: '收入支出分析' // 类目名称，用于和 legend 对应以及格式化 tooltip 的内容。
-            //   },
-            //   {
-            //     name: '收入+'
-            //   },
-            //   {
-            //     name: '支出-'
-            //   },
-            //   {
-            //     name: '支出-'
-            //   },
-            //   {
-            //     name: '剩余='
-            //   }
-            // ],
             links: [
               {
                 // 节点间的关系数据
@@ -264,18 +224,35 @@ export default {
             ]
           }
         ],
-
         animationEasingUpdate: 'quinticInOut', // 数据更新动画的缓动效果。[ default: cubicOut ]    "quinticInOut"
         animationDurationUpdate: 100 // 数据更新动画的时长。[ default: 300 ]
-      })
+      }
+    }
+  },
+  created() {
+    // 从内存中取出来首页列表参数
+    this.rowData = JSON.parse(sessionStorage.getItem('hao'))
+  },
+  mounted() {
+    this.initCharts()
+  },
+  methods: {
+    // 初始化图形插件
+    initCharts() {
+      this.chart = echarts.init(document.getElementById('tree'))
+      this.setOptions()
     },
-    rules: {
-      relation: [{ required: true, message: 'relation is required', trigger: 'change' }]
+    // 配置图表
+    setOptions() {
+      const that = this
+      this.chart.setOption(that.options)
     },
     // 接受
     accept(e) {
-      // 操作数据
-      alert('接受推荐：' + e.id)
+      // 操作数据 接受
+      this.addNameA('公司' + e.id)
+      // 删除在list里的该项数据
+      // dothing
     },
     // 忽略
     ignore(e) {
@@ -286,15 +263,33 @@ export default {
       this.addRelaVisible = true
     },
     sumbitAddRow() {
-      this.$refs['addForm'].validate((valid) => {
-        if (valid) {
-          this.addRelaVisible = false
+      if (this.addRela.name) {
+        this.addRelaVisible = false
+        // 添加并更新视图
+        this.addNameA(this.addRela.name)
+      } else {
+        alert('请输入新建内容')
+      }
+    },
+    addNameA(name) {
+      this.options.series[0].data.push({
+        name: name,
+        draggable: true, // 节点是否可拖拽，只在使用力引导布局的时候有用。
+        symbolSize: [80, 80], // 关系图节点标记的大小，可以设置成诸如 10 这样单一的数字，也可以用数组分开表示宽和高，例如 [20, 10] 表示标记宽为20，高为10。
+        itemStyle: {
+          border: '1px solid tan',
+          color: '#1890FF'
         }
       })
+      this.options.series[0].links.push({
+        target: name,
+        source: '公司A'
+      })
+      this.chart.setOption(this.options)
+    },
+    cancel() {
+      this.addRelaVisible = false
     }
-  },
-  cancel() {
-    this.addRelaVisible = false
   }
 }
 </script>
