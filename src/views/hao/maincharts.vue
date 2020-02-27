@@ -26,7 +26,7 @@
       </div>
     </div>
     <el-dialog
-      title="新建"
+      title="添加关系"
       :visible.sync="addRelaVisible"
     >
       <el-form
